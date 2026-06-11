@@ -590,7 +590,7 @@
     .recog-grid {
       margin-top: 56px;
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
       gap: 20px;
     }
     .recog-card {
@@ -710,7 +710,6 @@
       section { padding: 90px 0; }
       .about-grid { grid-template-columns: 1fr; gap: 40px; }
       .feature-grid { grid-template-columns: 1fr; gap: 36px; }
-      .recog-grid { grid-template-columns: 1fr; }
       .feature { padding: 36px 28px; }
     }
     @media (max-width: 760px) {
@@ -971,6 +970,13 @@
       </div>
 
       <div class="recog-grid">
+        <div class="recog-card reveal">
+          <div class="star-tile">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.9 6.26L21.5 9.3l-4.8 4.6 1.2 6.6L12 17.3 6.1 20.5l1.2-6.6L2.5 9.3l6.6-1.04L12 2z"/></svg>
+          </div>
+          <h3>Monthly Recognition · InXpress</h3>
+          <p>Recognised twice at the InXpress monthly all-hands for exceptional individual contribution — February 2026 and April 2026.</p>
+        </div>
         <div class="recog-card reveal">
           <div class="star-tile">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.9 6.26L21.5 9.3l-4.8 4.6 1.2 6.6L12 17.3 6.1 20.5l1.2-6.6L2.5 9.3l6.6-1.04L12 2z"/></svg>
