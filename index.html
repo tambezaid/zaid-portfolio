@@ -1,0 +1,1039 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Zaid Arshad Tambe · Senior Java Developer & Technical Lead</title>
+  <meta name="description" content="Zaid Arshad Tambe — Senior Java Developer & Technical Lead with 10 years of experience designing APIs, decomposing monoliths, and building integration platforms." />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ============================================================
+       Design tokens
+       ============================================================ */
+    :root {
+      --bg:          #fbfbfd;
+      --surface:     #ffffff;
+      --surface-2:   #f4f5f8;
+      --ink:         #16181d;
+      --ink-soft:    #4b5161;
+      --ink-faint:   #8b91a3;
+      --line:        #e7e9ef;
+      --indigo:      #4353ff;
+      --indigo-deep: #2f3dcc;
+      --indigo-soft: #eef0ff;
+      --shadow-sm: 0 1px 2px rgba(22,24,29,.05), 0 2px 8px rgba(22,24,29,.04);
+      --shadow-md: 0 2px 4px rgba(22,24,29,.04), 0 12px 32px rgba(22,24,29,.08);
+      --r: 14px;
+      --maxw: 1080px;
+      --ease: cubic-bezier(.16,1,.3,1);
+    }
+
+    /* ============================================================
+       Reset & base
+       ============================================================ */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: var(--bg);
+      color: var(--ink-soft);
+      font-size: 16px;
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+      overflow-x: hidden;
+    }
+
+    ::selection { background: var(--indigo); color: #fff; }
+
+    a { color: inherit; text-decoration: none; }
+
+    b { font-weight: 600; color: var(--ink); }
+
+    .wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 32px; }
+
+    /* ============================================================
+       Kicker / section headings
+       ============================================================ */
+    .kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: 14px;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--indigo);
+      margin-bottom: 18px;
+    }
+    .kicker::before {
+      content: "";
+      width: 22px;
+      height: 2px;
+      background: var(--indigo);
+      display: inline-block;
+    }
+
+    h2 {
+      font-weight: 700;
+      font-size: clamp(1.7rem, 3.6vw, 2.4rem);
+      letter-spacing: -.025em;
+      line-height: 1.12;
+      color: var(--ink);
+    }
+
+    .sec-sub {
+      margin-top: 18px;
+      max-width: 640px;
+      font-size: 17px;
+      color: var(--ink-soft);
+    }
+
+    section { padding: 110px 0; }
+
+    /* ============================================================
+       Buttons
+       ============================================================ */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14.5px;
+      font-weight: 600;
+      padding: 13px 24px;
+      border-radius: 10px;
+      border: 1px solid transparent;
+      cursor: pointer;
+      transition: transform .35s var(--ease), background .35s var(--ease), box-shadow .35s var(--ease), color .35s var(--ease);
+      white-space: nowrap;
+    }
+    .btn.primary {
+      background: var(--ink);
+      color: #fff;
+    }
+    .btn.primary:hover {
+      background: var(--indigo);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-md);
+    }
+    .btn.secondary {
+      background: var(--surface);
+      color: var(--ink);
+      border-color: var(--line);
+    }
+    .btn.secondary:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-md);
+    }
+
+    /* ============================================================
+       Floating pill nav
+       ============================================================ */
+    nav {
+      position: fixed;
+      top: 16px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      padding: 7px 8px;
+      background: rgba(255,255,255,.8);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border: 1px solid var(--line);
+      border-radius: 100px;
+      box-shadow: var(--shadow-sm);
+      transition: box-shadow .4s var(--ease);
+    }
+    nav.scrolled { box-shadow: var(--shadow-md); }
+
+    nav a {
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--ink-soft);
+      padding: 8px 14px;
+      border-radius: 100px;
+      transition: background .25s var(--ease), color .25s var(--ease);
+    }
+    nav a:hover { background: var(--surface-2); color: var(--ink); }
+
+    nav a.cta {
+      background: var(--ink);
+      color: #fff;
+    }
+    nav a.cta:hover { background: var(--indigo); color: #fff; }
+
+    /* ============================================================
+       Hero
+       ============================================================ */
+    header {
+      position: relative;
+      padding: 200px 0 120px;
+      overflow: hidden;
+    }
+    header::before {
+      content: "";
+      position: absolute;
+      top: -10%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 1100px;
+      height: 800px;
+      background: radial-gradient(circle at center, rgba(67,83,255,.07) 0%, rgba(67,83,255,0) 60%);
+      pointer-events: none;
+      z-index: 0;
+    }
+    header .wrap { position: relative; z-index: 1; }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      padding: 7px 15px;
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 100px;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--ink-soft);
+      box-shadow: var(--shadow-sm);
+      animation: rise .8s var(--ease) both;
+      animation-delay: .05s;
+    }
+    .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #28c76f;
+      box-shadow: 0 0 0 0 rgba(40,199,111,.5);
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse {
+      0%   { box-shadow: 0 0 0 0 rgba(40,199,111,.5); }
+      70%  { box-shadow: 0 0 0 7px rgba(40,199,111,0); }
+      100% { box-shadow: 0 0 0 0 rgba(40,199,111,0); }
+    }
+
+    h1 {
+      font-weight: 800;
+      font-size: clamp(2.6rem, 6.4vw, 4.6rem);
+      letter-spacing: -.035em;
+      line-height: 1.04;
+      color: var(--ink);
+      margin: 28px 0 0;
+      max-width: 14ch;
+      animation: rise .8s var(--ease) both;
+      animation-delay: .12s;
+    }
+    .grad {
+      background: linear-gradient(100deg, #4353ff 0%, #7b6cff 60%, #a26bff 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      color: transparent;
+    }
+
+    .subtitle {
+      margin-top: 28px;
+      max-width: 620px;
+      font-size: 18px;
+      color: var(--ink-soft);
+      animation: rise .8s var(--ease) both;
+      animation-delay: .22s;
+    }
+
+    .hero-btns {
+      margin-top: 36px;
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      animation: rise .8s var(--ease) both;
+      animation-delay: .32s;
+    }
+
+    @keyframes rise {
+      from { opacity: 0; transform: translateY(22px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ============================================================
+       Scroll reveal
+       ============================================================ */
+    .reveal {
+      opacity: 0;
+      transform: translateY(22px);
+      transition: opacity .8s var(--ease), transform .8s var(--ease);
+    }
+    .reveal.in { opacity: 1; transform: translateY(0); }
+
+    /* ============================================================
+       About
+       ============================================================ */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1.45fr 1fr;
+      gap: 56px;
+      align-items: start;
+    }
+    .about-copy p { margin-top: 20px; }
+    .about-copy p:first-of-type { margin-top: 26px; }
+
+    .glance {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--r);
+      box-shadow: var(--shadow-sm);
+      padding: 8px 26px;
+    }
+    .glance .row {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 16px;
+      padding: 17px 0;
+      border-bottom: 1px solid var(--line);
+    }
+    .glance .row:last-child { border-bottom: none; }
+    .glance .k {
+      font-size: 13px;
+      color: var(--ink-faint);
+      font-weight: 500;
+    }
+    .glance .v {
+      font-size: 14.5px;
+      font-weight: 600;
+      color: var(--ink);
+      text-align: right;
+    }
+
+    /* ============================================================
+       Experience timeline
+       ============================================================ */
+    .timeline {
+      margin-top: 56px;
+      position: relative;
+      padding-left: 38px;
+    }
+    .timeline::before {
+      content: "";
+      position: absolute;
+      left: 7px;
+      top: 8px;
+      bottom: 8px;
+      width: 2px;
+      background: var(--line);
+    }
+    .tl-entry {
+      position: relative;
+      margin-bottom: 24px;
+    }
+    .tl-entry:last-child { margin-bottom: 0; }
+    .tl-entry::before {
+      content: "";
+      position: absolute;
+      left: -38px;
+      top: 26px;
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background: var(--surface);
+      border: 2px solid var(--line);
+      transition: border-color .35s var(--ease), box-shadow .35s var(--ease);
+      z-index: 2;
+    }
+    .tl-entry:hover::before {
+      border-color: var(--indigo);
+      box-shadow: 0 0 0 5px var(--indigo-soft);
+    }
+
+    .tl-card {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--r);
+      box-shadow: var(--shadow-sm);
+      padding: 26px 28px;
+      transition: transform .35s var(--ease), box-shadow .35s var(--ease);
+    }
+    .tl-card:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-md);
+    }
+    .tl-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 18px;
+      flex-wrap: wrap;
+    }
+    .tl-title {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--ink);
+      letter-spacing: -.01em;
+    }
+    .tl-title .co { color: var(--indigo); }
+    .tl-date {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12px;
+      color: var(--ink-faint);
+      white-space: nowrap;
+    }
+    .tl-role {
+      font-size: 13.5px;
+      font-weight: 600;
+      color: var(--ink-soft);
+      margin-top: 6px;
+    }
+    .tl-body { margin-top: 14px; font-size: 15px; }
+
+    .tags {
+      margin-top: 18px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .tag {
+      font-size: 12.5px;
+      font-weight: 500;
+      background: var(--surface-2);
+      border: 1px solid var(--line);
+      border-radius: 7px;
+      padding: 4px 11px;
+      color: var(--ink-soft);
+    }
+
+    /* ============================================================
+       AI-Augmented Practice
+       ============================================================ */
+    #practice { background: var(--surface-2); }
+
+    .practice-grid {
+      margin-top: 56px;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+    }
+    .practice-card {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--r);
+      box-shadow: var(--shadow-sm);
+      padding: 28px 24px;
+      transition: transform .35s var(--ease), box-shadow .35s var(--ease);
+    }
+    .practice-card:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-md);
+    }
+    .icon-tile {
+      width: 38px;
+      height: 38px;
+      border-radius: 10px;
+      background: var(--indigo-soft);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--indigo);
+      margin-bottom: 18px;
+    }
+    .practice-card h3 {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--ink);
+      margin-bottom: 10px;
+    }
+    .practice-card p { font-size: 14.5px; }
+
+    /* ============================================================
+       Independent Work — White Orchid feature card
+       ============================================================ */
+    .feature {
+      margin-top: 56px;
+      position: relative;
+      background: linear-gradient(135deg, #171a2e 0%, #1d2142 55%, #27224d 100%);
+      border-radius: 20px;
+      padding: 48px;
+      overflow: hidden;
+    }
+    .feature::after {
+      content: "";
+      position: absolute;
+      top: -120px;
+      right: -120px;
+      width: 420px;
+      height: 420px;
+      background: radial-gradient(circle at center, rgba(162,107,255,.35) 0%, rgba(162,107,255,0) 65%);
+      pointer-events: none;
+    }
+    .feature-grid {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: 48px;
+      align-items: start;
+    }
+    .pill-tag {
+      display: inline-block;
+      font-size: 11.5px;
+      font-weight: 700;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: #c5b6ff;
+      background: rgba(162,107,255,.14);
+      border: 1px solid rgba(162,107,255,.25);
+      border-radius: 100px;
+      padding: 6px 14px;
+    }
+    .feature h3 {
+      font-size: clamp(1.8rem, 3.4vw, 2.4rem);
+      font-weight: 800;
+      letter-spacing: -.02em;
+      color: #fff;
+      margin: 22px 0 4px;
+    }
+    .feature h3 .sub {
+      font-size: .55em;
+      font-weight: 500;
+      font-style: italic;
+      color: #a7adc4;
+    }
+    .feature-copy {
+      margin-top: 16px;
+      color: #c3c8db;
+      font-size: 16px;
+      max-width: 46ch;
+    }
+    .feature-copy b { color: #fff; }
+
+    .feature-list { list-style: none; }
+    .feature-list li {
+      display: flex;
+      gap: 16px;
+      padding: 18px 0;
+      border-bottom: 1px solid rgba(255,255,255,.1);
+    }
+    .feature-list li:first-child { padding-top: 0; }
+    .feature-list li:last-child { border-bottom: none; padding-bottom: 0; }
+    .feature-list .num {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 13px;
+      color: #8e8bd8;
+      padding-top: 2px;
+    }
+    .feature-list .fl-title {
+      font-size: 15.5px;
+      font-weight: 600;
+      color: #fff;
+    }
+    .feature-list .fl-copy {
+      font-size: 14px;
+      color: #aab0c6;
+      margin-top: 4px;
+    }
+
+    /* ============================================================
+       Skills
+       ============================================================ */
+    .skills-grid {
+      margin-top: 56px;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+    }
+    .skill-card {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--r);
+      box-shadow: var(--shadow-sm);
+      padding: 28px;
+      transition: transform .35s var(--ease), box-shadow .35s var(--ease);
+    }
+    .skill-card:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-md);
+    }
+    .skill-head {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--ink);
+      margin-bottom: 18px;
+    }
+    .skill-head::before {
+      content: "";
+      width: 8px;
+      height: 8px;
+      background: var(--indigo);
+      border-radius: 2px;
+    }
+
+    /* ============================================================
+       Recognition
+       ============================================================ */
+    .recog-grid {
+      margin-top: 56px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+    .recog-card {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--r);
+      box-shadow: var(--shadow-sm);
+      padding: 28px;
+      transition: transform .35s var(--ease), box-shadow .35s var(--ease);
+    }
+    .recog-card:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-md);
+    }
+    .star-tile {
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      background: var(--indigo-soft);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--indigo);
+      margin-bottom: 18px;
+    }
+    .recog-card h3 {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--ink);
+      margin-bottom: 8px;
+      letter-spacing: -.01em;
+    }
+    .recog-card p { font-size: 14.5px; }
+
+    /* ============================================================
+       Contact
+       ============================================================ */
+    .contact-panel {
+      position: relative;
+      background: var(--ink);
+      border-radius: 24px;
+      padding: 72px 48px;
+      text-align: center;
+      overflow: hidden;
+    }
+    .contact-panel::before {
+      content: "";
+      position: absolute;
+      top: -160px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 700px;
+      height: 500px;
+      background: radial-gradient(circle at center, rgba(67,83,255,.4) 0%, rgba(67,83,255,0) 60%);
+      pointer-events: none;
+    }
+    .contact-panel > * { position: relative; z-index: 1; }
+    .contact-panel .kicker { color: #8e9bff; justify-content: center; }
+    .contact-panel .kicker::before { background: #8e9bff; }
+    .contact-panel h2 { color: #fff; }
+    .contact-copy {
+      margin: 18px auto 0;
+      max-width: 520px;
+      color: #aab0c6;
+      font-size: 17px;
+    }
+    .contact-btns {
+      margin-top: 34px;
+      display: flex;
+      gap: 14px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .btn.white {
+      background: #fff;
+      color: var(--ink);
+    }
+    .btn.white:hover {
+      background: var(--indigo);
+      color: #fff;
+      transform: translateY(-2px);
+    }
+    .btn.ghost {
+      background: transparent;
+      color: #fff;
+      border-color: rgba(255,255,255,.25);
+    }
+    .btn.ghost:hover {
+      border-color: #fff;
+      transform: translateY(-2px);
+    }
+
+    /* ============================================================
+       Footer
+       ============================================================ */
+    footer {
+      border-top: 1px solid var(--line);
+      padding: 32px 0;
+    }
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+      font-size: 13.5px;
+      color: var(--ink-faint);
+    }
+
+    /* ============================================================
+       Responsive
+       ============================================================ */
+    @media (max-width: 980px) {
+      .practice-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 860px) {
+      section { padding: 90px 0; }
+      .about-grid { grid-template-columns: 1fr; gap: 40px; }
+      .feature-grid { grid-template-columns: 1fr; gap: 36px; }
+      .recog-grid { grid-template-columns: 1fr; }
+      .feature { padding: 36px 28px; }
+    }
+    @media (max-width: 760px) {
+      .hide-m { display: none; }
+      .skills-grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 600px) {
+      .wrap { padding: 0 20px; }
+      header { padding: 160px 0 90px; }
+      nav { gap: 2px; padding: 6px; }
+      nav a { padding: 7px 11px; font-size: 12.5px; }
+      .contact-panel { padding: 56px 26px; }
+    }
+    @media (max-width: 560px) {
+      .practice-grid { grid-template-columns: 1fr; }
+      .tl-head { gap: 6px; }
+      .hero-btns .btn, .contact-btns .btn { width: 100%; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ============================== NAV ============================== -->
+  <nav id="nav">
+    <a href="#about">About</a>
+    <a href="#experience">Experience</a>
+    <a href="#practice" class="hide-m">AI Practice</a>
+    <a href="#projects">Projects</a>
+    <a href="#skills" class="hide-m">Skills</a>
+    <a href="#contact" class="cta">Contact</a>
+  </nav>
+
+  <!-- ============================== HERO ============================== -->
+  <header>
+    <div class="wrap">
+      <span class="badge"><span class="dot"></span>Technical Lead at InXpress · Mumbai, India</span>
+      <h1>Backend systems that turn hard problems into <span class="grad">configuration changes.</span></h1>
+      <p class="subtitle">I'm <b>Zaid Arshad Tambe</b> — a Senior Java Developer &amp; Technical Lead with <b>10 years</b> of experience designing APIs from scratch, decomposing monoliths, and fixing the deep architectural problems that quietly slow teams down for years.</p>
+      <div class="hero-btns">
+        <a href="#experience" class="btn primary">View experience</a>
+        <a href="mailto:tambezaid@gmail.com" class="btn secondary">Get in touch</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- ============================== ABOUT ============================== -->
+  <section id="about">
+    <div class="wrap about-grid">
+      <div class="about-copy reveal">
+        <div class="kicker">About</div>
+        <h2>Architecture-first, end to end.</h2>
+        <p>For the last several years my work has been almost entirely on the technical side — API design, monolith decomposition, and integration platforms — leading efforts <b>from early design through production</b> alongside architects, product managers, and cross-functional teams.</p>
+        <p>My instinct is to make systems generic where it counts, so adding a new carrier, country, or integration becomes a configuration change rather than another development project. I care about leaving behind <b>patterns a team can build on consistently</b>, long after I've moved to the next problem.</p>
+        <p>I've shipped across <b>logistics, healthcare IT, and financial services</b> — from global carrier platforms to patent systems used by offices worldwide.</p>
+      </div>
+      <div class="glance reveal">
+        <div class="row"><span class="k">Role</span><span class="v">Sr. Java Developer · Tech Lead</span></div>
+        <div class="row"><span class="k">Experience</span><span class="v">10 years</span></div>
+        <div class="row"><span class="k">Focus</span><span class="v">APIs · Integration · Architecture</span></div>
+        <div class="row"><span class="k">Location</span><span class="v">Mumbai, India</span></div>
+        <div class="row"><span class="k">Education</span><span class="v">B.E. Computer Engg · Distinction</span></div>
+        <div class="row"><span class="k">Email</span><span class="v">tambezaid@gmail.com</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================== EXPERIENCE ============================== -->
+  <section id="experience">
+    <div class="wrap">
+      <div class="reveal">
+        <div class="kicker">Experience</div>
+        <h2>A decade of backend engineering.</h2>
+        <p class="sec-sub">Four organisations, three industries, one consistent thread: <b>taking ownership of the hardest architectural problems</b> and shipping them to production.</p>
+      </div>
+
+      <div class="timeline">
+        <div class="tl-entry reveal">
+          <div class="tl-card">
+            <div class="tl-head">
+              <span class="tl-title">Integration Main Hub · <span class="co">InXpress India</span></span>
+              <span class="tl-date">Feb 2025 — Present</span>
+            </div>
+            <div class="tl-role">Senior Java Developer · Technical Lead</div>
+            <p class="tl-body">InXpress ran <b>14 separate codebases</b> — one per country — for carrier integrations. I led their replacement with a single, configurable REST API platform built from the ground up, now live across all 14 countries. Built the <b>dynamic endpoint routing engine</b> and carrier-specific payload transformation layer that make adding a carrier or country a configuration change, not a development project. Defined scalable API patterns with the technical architect, onboarded and mentored developers and QA, and ran sprint ceremonies and stakeholder syncs up to CTO level.</p>
+            <div class="tags">
+              <span class="tag">Java</span><span class="tag">Spring Boot</span><span class="tag">REST</span><span class="tag">AWS</span><span class="tag">Microservices</span><span class="tag">Team Leadership</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="tl-entry reveal">
+          <div class="tl-card">
+            <div class="tl-head">
+              <span class="tl-title">LIMS &amp; JPETS · <span class="co">Trigyn Technologies (IOM)</span></span>
+              <span class="tl-date">Oct 2022 — Jan 2025</span>
+            </div>
+            <div class="tl-role">Technical Analyst</div>
+            <p class="tl-body">Lab results took up to five minutes to reach downstream systems on a batch process. I re-architected delivery as a <b>real-time Spring Boot REST API</b> — pushing results the moment they're finalised, effectively zero delay — and owned the design end-to-end through Swagger specs and documentation. Integrated LIMS with the NextGen module via <b>Azure Service Bus</b> queues and topics. On JPETS, replaced basic auth with <b>Azure AD client-credential flow</b>, resolved Fortify findings at the root, and added concurrency controls against simultaneous record edits.</p>
+            <div class="tags">
+              <span class="tag">Spring Boot</span><span class="tag">Azure Service Bus</span><span class="tag">Azure AD</span><span class="tag">Swagger</span><span class="tag">Security</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="tl-entry reveal">
+          <div class="tl-card">
+            <div class="tl-head">
+              <span class="tl-title">Collateral Platform · <span class="co">BNP Paribas</span></span>
+              <span class="tl-date">Jan 2022 — Oct 2022</span>
+            </div>
+            <div class="tl-role">Senior Software Engineer</div>
+            <p class="tl-body">Designed and built the POC that extracted the Acadia module from the CollWeb monolith into a <b>standalone, independently deployable service — with zero visible disruption to end users</b>. Approved and shipped to production, it became the foundation for the platform's move toward microservice-ready deployments. Also replaced a legacy JAR dependency with a Spring REST service, covered production support rota, and ran technical interviews.</p>
+            <div class="tags">
+              <span class="tag">Java</span><span class="tag">Spring</span><span class="tag">Monolith Decomposition</span><span class="tag">CI/CD</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="tl-entry reveal">
+          <div class="tl-card">
+            <div class="tl-head">
+              <span class="tl-title">ePCT &amp; IPAS · <span class="co">Trigyn Technologies (WIPO)</span></span>
+              <span class="tl-date">Jun 2016 — Jan 2022</span>
+            </div>
+            <div class="tl-role">Senior Software Engineer</div>
+            <p class="tl-body">Five and a half years developing and maintaining <b>ePCT</b> — the global application patent offices use to manage the Patent Cooperation Treaty process — covering the full cycle from requirements and design through features and unit tests, coordinating directly with the client. Built IP administration modules on <b>IPAS</b>.</p>
+            <div class="tags">
+              <span class="tag">Java</span><span class="tag">JSF</span><span class="tag">Hibernate</span><span class="tag">Oracle</span><span class="tag">JMS</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================== AI PRACTICE ============================== -->
+  <section id="practice">
+    <div class="wrap">
+      <div class="reveal">
+        <div class="kicker">AI-Augmented Practice</div>
+        <h2>AI as engineering leverage.</h2>
+        <p class="sec-sub">AI is a daily part of how I work — not a novelty, but <b>real leverage across the development lifecycle</b>. It carries the mechanical effort so my judgment goes where it matters: architecture, trade-offs, and review.</p>
+      </div>
+
+      <div class="practice-grid">
+        <div class="practice-card reveal">
+          <div class="icon-tile">01</div>
+          <h3>Day-to-day coding</h3>
+          <p>Drafting implementations, refactors, and boilerplate quickly — then refining against the patterns the codebase already relies on.</p>
+        </div>
+        <div class="practice-card reveal">
+          <div class="icon-tile">02</div>
+          <h3>Code review</h3>
+          <p>A first-pass reviewer for diffs, surfacing edge cases and regressions before they reach a human reviewer or production.</p>
+        </div>
+        <div class="practice-card reveal">
+          <div class="icon-tile">03</div>
+          <h3>Ticket creation</h3>
+          <p>Turning loose requirements into well-scoped JIRA tickets developers and QA can work from without back-and-forth.</p>
+        </div>
+        <div class="practice-card reveal">
+          <div class="icon-tile">04</div>
+          <h3>Investigations</h3>
+          <p>Tracing integration bugs, payload mismatches, and latency issues — reasoning through logs to reach root cause faster.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================== PROJECTS ============================== -->
+  <section id="projects">
+    <div class="wrap">
+      <div class="reveal">
+        <div class="kicker">Independent Work</div>
+        <h2>Beyond the day job.</h2>
+        <p class="sec-sub">An end-to-end build delivered independently for a residential construction firm.</p>
+      </div>
+
+      <div class="feature reveal">
+        <div class="feature-grid">
+          <div>
+            <span class="pill-tag">Real Estate · End-to-End</span>
+            <h3>White Orchid <span class="sub">for SM Builders</span></h3>
+            <p class="feature-copy">A complete digital footprint for a residential development: a <b>public marketing website</b> for prospective buyers, paired with a <b>private internal web application</b> the firm uses to manage its inventory of flats, buyer records, and every detail of a sale — replacing scattered spreadsheets and paperwork with a single source of truth.</p>
+          </div>
+          <ul class="feature-list">
+            <li>
+              <span class="num">01</span>
+              <div>
+                <div class="fl-title">Public website</div>
+                <div class="fl-copy">Marketing site presenting the development, its units, and project information to buyers.</div>
+              </div>
+            </li>
+            <li>
+              <span class="num">02</span>
+              <div>
+                <div class="fl-title">Internal web application</div>
+                <div class="fl-copy">Staff tool for flat inventory, buyer details, and sale records — one source of truth.</div>
+              </div>
+            </li>
+            <li>
+              <span class="num">03</span>
+              <div>
+                <div class="fl-title">Supporting collateral</div>
+                <div class="fl-copy">QR codes, 3D visualisation, email templates, and print materials.</div>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================== SKILLS ============================== -->
+  <section id="skills">
+    <div class="wrap">
+      <div class="reveal">
+        <div class="kicker">Skills</div>
+        <h2>The toolkit.</h2>
+        <p class="sec-sub">A backend-first stack, shaped by ten years of API and integration work.</p>
+      </div>
+
+      <div class="skills-grid">
+        <div class="skill-card reveal">
+          <div class="skill-head">Languages &amp; Frameworks</div>
+          <div class="tags">
+            <span class="tag">Java / J2EE</span><span class="tag">Spring Boot</span><span class="tag">Spring Core</span><span class="tag">Hibernate</span><span class="tag">JPA</span><span class="tag">JSF</span><span class="tag">Primefaces</span><span class="tag">Struts</span><span class="tag">JUnit</span><span class="tag">Log4j</span>
+          </div>
+        </div>
+        <div class="skill-card reveal">
+          <div class="skill-head">API &amp; Integration</div>
+          <div class="tags">
+            <span class="tag">REST API</span><span class="tag">Swagger</span><span class="tag">Azure Service Bus</span><span class="tag">Azure AD (CCF)</span><span class="tag">AWS S3</span><span class="tag">AWS EC2</span><span class="tag">AWS SQS</span><span class="tag">CloudWatch</span>
+          </div>
+        </div>
+        <div class="skill-card reveal">
+          <div class="skill-head">Architecture</div>
+          <div class="tags">
+            <span class="tag">Microservices</span><span class="tag">Monolith Decomposition</span><span class="tag">Dynamic Endpoint Routing</span><span class="tag">Configurable Payload Transformation</span>
+          </div>
+        </div>
+        <div class="skill-card reveal">
+          <div class="skill-head">Databases · Servers · Tooling</div>
+          <div class="tags">
+            <span class="tag">Oracle</span><span class="tag">MySQL</span><span class="tag">Tomcat</span><span class="tag">WildFly</span><span class="tag">Git</span><span class="tag">JIRA</span><span class="tag">Bamboo</span><span class="tag">Maven</span><span class="tag">Sonar</span><span class="tag">AI-assisted development</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================== RECOGNITION ============================== -->
+  <section id="recognition">
+    <div class="wrap">
+      <div class="reveal">
+        <div class="kicker">Recognition</div>
+        <h2>Acknowledged along the way.</h2>
+      </div>
+
+      <div class="recog-grid">
+        <div class="recog-card reveal">
+          <div class="star-tile">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.9 6.26L21.5 9.3l-4.8 4.6 1.2 6.6L12 17.3 6.1 20.5l1.2-6.6L2.5 9.3l6.6-1.04L12 2z"/></svg>
+          </div>
+          <h3>Ace Trigynite of the Quarter</h3>
+          <p>Q2 2023–2024, awarded for outstanding technical contribution.</p>
+        </div>
+        <div class="recog-card reveal">
+          <div class="star-tile">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.9 6.26L21.5 9.3l-4.8 4.6 1.2 6.6L12 17.3 6.1 20.5l1.2-6.6L2.5 9.3l6.6-1.04L12 2z"/></svg>
+          </div>
+          <h3>Academic Excellence</h3>
+          <p>Certificate awarded in all four years of B.E. (2012–2015).</p>
+        </div>
+        <div class="recog-card reveal">
+          <div class="star-tile">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.9 6.26L21.5 9.3l-4.8 4.6 1.2 6.6L12 17.3 6.1 20.5l1.2-6.6L2.5 9.3l6.6-1.04L12 2z"/></svg>
+          </div>
+          <h3>First Class with Distinction</h3>
+          <p>B.E. Computer Engineering, University of Mumbai, 2015 (76%).</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================== CONTACT ============================== -->
+  <section id="contact">
+    <div class="wrap">
+      <div class="contact-panel reveal">
+        <div class="kicker">Contact</div>
+        <h2>Let's build something that scales.</h2>
+        <p class="contact-copy">Open to conversations about backend architecture, integration platforms, and technical leadership.</p>
+        <div class="contact-btns">
+          <a href="mailto:tambezaid@gmail.com" class="btn white">tambezaid@gmail.com</a>
+          <a href="tel:+918796508350" class="btn ghost">+91 87965 08350</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================== FOOTER ============================== -->
+  <footer>
+    <div class="wrap footer-inner">
+      <span>© 2026 Zaid Arshad Tambe</span>
+      <span>Senior Java Developer · Mumbai, India</span>
+    </div>
+  </footer>
+
+  <script>
+    // 1. Nav shadow on scroll
+    const nav = document.getElementById('nav');
+    addEventListener('scroll', () => nav.classList.toggle('scrolled', scrollY > 20));
+
+    // 2. Scroll-reveal
+    const io = new IntersectionObserver(es => {
+      es.forEach(e => {
+        if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+      });
+    }, { threshold: .08 });
+    document.querySelectorAll('.reveal').forEach((el, i) => {
+      el.style.transitionDelay = (Math.min(i % 3, 2) * 0.07) + 's';
+      io.observe(el);
+    });
+  </script>
+</body>
+</html>
