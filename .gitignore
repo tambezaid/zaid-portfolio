@@ -7,3 +7,6 @@ desktop.ini
 .vscode/
 .idea/
 *.swp
+
+# Spec doc (kept local, not published)
+PORTFOLIO_SPEC.md
